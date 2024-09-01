@@ -1,11 +1,12 @@
 name: ${project.name}
 version: ${project.version}
+api-version: 1.13
 description: ${project.description}
 author: Chris Naude
 main: com.cnaude.dynwarp.DynWarp
 depend: [ dynmap ]
 commands:
-    dwlist:
+    dwarplist:
         description: List Dynmap marker warps.
         usage: /<command>
         aliases: [ dwl ]
@@ -18,5 +19,5 @@ permissions:
         description: Gives player access to /dwarp and /dw.
         default: op 
     dynwarp.list:
-        description: Gives player access to /dwlist and /dwl.
+        description: Gives player access to /dwarplist and /dwl.
         default: op 

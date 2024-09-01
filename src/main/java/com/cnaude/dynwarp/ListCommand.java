@@ -45,7 +45,10 @@ public class ListCommand implements CommandExecutor {
             List<Marker> sortedMarkers = ms.getMarkers().stream().collect(Collectors.toList());            
             Collections.sort(sortedMarkers, (o1, o2) -> o1.getMarkerID().compareTo(o2.getMarkerID()));            
             for (Marker m : sortedMarkers) {
-                sender.sendMessage(ChatColor.GOLD + m.getMarkerID() + ": " + ChatColor.WHITE + m.getLabel() + ChatColor.AQUA + " [" + m.getWorld() + ": " + m.getX() + "," + m.getY() + "," + m.getZ() + "]");
+                if (!m.getMarkerID().startsWith("_spawn_")) {
+                    sender.sendMessage(ChatColor.GOLD + m.getLabel() + ChatColor.AQUA + " [" + m.getWorld() + "]");
+                }
+                //sender.sendMessage(ChatColor.GOLD + m.getMarkerID() + ": " + ChatColor.WHITE + m.getLabel() + ChatColor.AQUA + " [" + m.getWorld() + ": " + m.getX() + "," + m.getY() + "," + m.getZ() + "]");
             }
         }
 

@@ -13,7 +13,7 @@
 
     <groupId>com.cnaude</groupId>
     <artifactId>DynWarp</artifactId>
-    <version>0.1-${build.number}</version>
+    <version>0.1-19</version>
     <name>DynWarp</name>
     <description>Allow players to warp to Dynmap markers.</description>
 
@@ -122,9 +122,9 @@
                     <execution>
                         <phase>package</phase>
                         <configuration>
-                            <tasks>                                                                                             
+                            <target>
                                 <copy file="../${project.name}/target/DynWarp-${project.version}.jar" tofile="../${project.name}/target/DynWarp.jar"/>                         
-                            </tasks>
+                            </target>
                         </configuration>
                         <goals>
                             <goal>run</goal>

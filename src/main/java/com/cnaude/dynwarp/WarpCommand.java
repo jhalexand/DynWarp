@@ -36,7 +36,7 @@ public class WarpCommand implements CommandExecutor {
         if (args.length == 0) {
             return false;
         }
-        String markerID = args[0];
+        String markerLabel = args[0];
         if (sender instanceof Player) {
             float yaw = ((Player) sender).getLocation().getYaw();
             float pitch = ((Player) sender).getLocation().getPitch();
@@ -56,16 +56,17 @@ public class WarpCommand implements CommandExecutor {
                 }
             }
 
-            if (sender.hasPermission("dynwarp.tp") || sender.hasPermission("dynwarp.tp." + markerID)) {
+            if (sender.hasPermission("dynwarp.tp") || sender.hasPermission("dynwarp.tp." + markerLabel)) {
                 Marker dm = null;
                 for (MarkerSet ms : markerAPI.getMarkerSets()) {
                     // first loop to get exact match
                     for (Marker m : ms.getMarkers()) {
-                        if (m.getMarkerID().equalsIgnoreCase(markerID)) {
+                        if (m.getLabel().equalsIgnoreCase(markerLabel)) {
                             dm = m;
                         }
                     }
                     // second loop for partial match
+                    /*
                     if (dm == null) {
                         for (Marker m : ms.getMarkers()) {
                             if (m.getMarkerID().toLowerCase().contains(markerID.toLowerCase())) {
@@ -73,20 +74,22 @@ public class WarpCommand implements CommandExecutor {
                             }
                         }
                     }
+
+                     */
                 }
                 if (dm != null) {
-                    sender.sendMessage(ChatColor.GOLD + "Warping to " + ChatColor.AQUA + dm.getMarkerID() + ": " + ChatColor.WHITE + dm.getLabel());
+                    sender.sendMessage(ChatColor.GOLD + "Warping to " + ChatColor.AQUA + dm.getLabel());
                     Location loc = new Location(Bukkit.getWorld(dm.getWorld()), dm.getX(), dm.getY(), dm.getZ(), yaw, pitch);
                     ((Player) sender).teleport(loc);
                     return true;
                 } else {
-                    sender.sendMessage(ChatColor.GOLD + "No matching marker ID found.");
+                    sender.sendMessage(ChatColor.GOLD + "Couldn't find marker " + ChatColor.AQUA + markerLabel + ChatColor.GOLD + ". Use /dwlist to see markers.");
                 }
             } else {
                 sender.sendMessage(ChatColor.RED + "You do not have permission to use this command!");
             }
         } else {
-            sender.sendMessage(ChatColor.RED + "You're not a player!");
+            sender.sendMessage(ChatColor.RED + "You're not a player!?");
         }
         return true;
     }

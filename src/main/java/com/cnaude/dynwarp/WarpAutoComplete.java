@@ -27,7 +27,10 @@ public class WarpAutoComplete implements TabCompleter {
 		List<String> markers = new ArrayList<>(); 
 		for (MarkerSet ms : markerAPI.getMarkerSets()) {
             for (Marker m : ms.getMarkers()) {
-                markers.add(m.getMarkerID());
+                if (!m.getMarkerID().startsWith("_spawn_") && m.getLabel().toLowerCase().startsWith(args[0].toLowerCase())) {
+                    markers.add(m.getLabel());
+                }
+                //markers.add(m.getMarkerID());
             }
         }
 		return markers;
