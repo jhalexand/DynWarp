@@ -6,7 +6,7 @@ This is an add-on plugin for [Dynmap](https://www.spigotmc.org/resources/dynmapÂ
 * Warp to a marker.
 
 ## Commands
-* /dwarp &lt;MARKER ID&gt; (&lt;N S W E&gt;)
+* /dwarp &lt;MARKER LABEL&gt; (&lt;N S W E&gt;)
 * /dwarplist
 * /dw (alias for dwarp)
 * /dwl (alias for dwarplist)
@@ -21,4 +21,4 @@ dynwarp.list - List the Dynmap marker warps
 
 dynwarp.tp - Warp (teleport) to a Dynmap marker
 
-dynwarp.tp.<MARKER_ID> - Warp to a specific Dynmap marker ID
+dynwarp.tp.<MARKER_LABEL> - Warp to a specific Dynmap marker ID
